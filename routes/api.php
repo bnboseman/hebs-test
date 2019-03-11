@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 
 Route::resource('person', '\App\Http\Controllers\PersonController')
     ->only(['index', 'show']);
+
+Route::resource('quote', '\App\Http\Controllers\QuoteController')
+    ->only(['index']);
