@@ -38,3 +38,9 @@ API. If the limit is larger than 100, the API should:
 
 **BONUS:** Implement some basic unit tests that interact with the HTTP endpoint (i.e. to QA the status code 400
 when limit is greater than 100).
+
+## Notes from Nichole
+- I've generated documentation for the endpoints available, which will be located at `/docs/`
+- I'm only using bootstrap for styling, haven't added any custom CSS
+- I haven't created database migrations since I wanted to do this in a way that wouldn't require you to do extra set up other than installing laravel. The data is not persistant and will change with each all of the endpoint, but ideally I would have the data saved to the database so `/person/1` would return faker data saved to a database
+
