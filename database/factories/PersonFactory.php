@@ -3,6 +3,28 @@
 use Faker\Generator as Faker;
 use GuzzleHttp\Client;
 
+if (! function_exists('autoIncrement')) {
+    function autoIncrement()
+    {
+        for ($i = 0; $i < 1000; $i++) {
+            yield $i;
+        }
+    }
+}
+if (! function_exists('getPosts')) {
+    function getPosts()
+    {
+        $client = new Client([
+            'base_uri' => 'https://jsonplaceholder.typicode.com',
+        ]);
+
+        $response = $client->request('GET', 'posts');
+
+        return collect(json_decode($response->getBody()
+            ->getContents()));
+    }
+}
+
 $autoIncrement = autoIncrement();
 $posts = getPosts();
 
@@ -32,21 +54,4 @@ $factory->afterMaking(
     }
 );
 
-function autoIncrement()
-{
-    for ($i = 0; $i < 1000; $i++) {
-        yield $i;
-    }
-}
 
-function getPosts()
-{
-    $client = new Client([
-        'base_uri' => 'https://jsonplaceholder.typicode.com',
-    ]);
-
-    $response = $client->request('GET', 'posts');
-
-    return collect(json_decode($response->getBody()
-        ->getContents()));
-}
